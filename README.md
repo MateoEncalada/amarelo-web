@@ -8,7 +8,8 @@ Catálogo estático (HTML + CSS + JavaScript, sin dependencias). Pedidos solo po
 
 ## Qué editar
 - `js/products.js`: productos, precios, colores, medidas, fotos.
-- `js/whatsapp-order.js`: número de WhatsApp (`AMARELO_WHATSAPP_NUMBER`) y mensaje del pedido.
+- `js/whatsapp-order.js`: número de WhatsApp (`AMARELO_WHATSAPP_NUMBER`) y mensaje del pedido de un solo producto.
+- `js/cart.js`: carrito (se guarda en el navegador) y mensaje del pedido completo.
 - `css/styles.css`: colores y diseño.
 
 ## Pendiente de confirmar

@@ -1,6 +1,6 @@
 // =====================================================================
 // app.js — Lógica del sitio: dibuja la grilla y la vista de detalle
-// Depende de products.js (STORE, PRODUCTS) y whatsapp-order.js (createOrderButton).
+// Depende de products.js (STORE, PRODUCTS), whatsapp-order.js (createOrderButton) y cart.js (addToCart).
 // =====================================================================
 
 // Formatea un número como precio, ej. 110 -> "$110"
@@ -59,6 +59,7 @@ function renderDetail() {                                       // Sin parámetr
   }                                                             // Fin del caso no encontrado
   document.title = `${product.name} | Amarelo`;                 // Cambia el título de la pestaña
   let current = 0;                                              // Índice de la variante seleccionada
+  let qty = 1;                                                  // Cantidad elegida para agregar al carrito
 
   // Función interna que vuelve a pintar el detalle con la variante actual
   function paint() {                                            // Se llama al inicio y al cambiar de color
@@ -82,10 +83,28 @@ function renderDetail() {                                       // Sin parámetr
           <span>Color:</span>
           ${product.variants.map((x, i) => `<button class="chip ${i === current ? "active" : ""}" data-i="${i}">${x.label}</button>`).join("")}
         </div>
+        <div class="buy-row">
+          <div class="qty qty-lg">
+            <button id="qty-minus" aria-label="Menos">−</button>
+            <span id="qty-value">1</span>
+            <button id="qty-plus" aria-label="Más">+</button>
+          </div>
+          <button id="add-to-cart" class="btn">Agregar al carrito</button>
+        </div>
         <div id="wa-slot"></div>
         <p class="note">Hecho a mano. Los pedidos se coordinan únicamente por WhatsApp.</p>
       </div>`;                                                  // Galería a la izquierda, información y botón a la derecha
     document.getElementById("wa-slot").appendChild(createOrderButton(product.name, v.label, v.price)); // Botón de WhatsApp con producto, color y precio elegidos
+    document.getElementById("qty-minus").addEventListener("click", () => { // Botón "−" de cantidad
+      qty = Math.max(1, qty - 1);                               // Resta uno sin bajar de 1
+      document.getElementById("qty-value").textContent = qty;   // Muestra la nueva cantidad
+    });                                                         // Fin "−"
+    document.getElementById("qty-plus").addEventListener("click", () => { // Botón "+" de cantidad
+      qty += 1;                                                 // Suma uno
+      document.getElementById("qty-value").textContent = qty;   // Muestra la nueva cantidad
+    });                                                         // Fin "+"
+    document.getElementById("qty-value").textContent = qty;     // Mantiene la cantidad al cambiar de color
+    document.getElementById("add-to-cart").addEventListener("click", () => addToCart(product.id, current, qty)); // Agrega producto, color y cantidad al carrito (cart.js)
     box.querySelectorAll(".chip").forEach(btn =>                // Para cada botón de color...
       btn.addEventListener("click", () => {                     // ...al hacer clic:
         current = Number(btn.dataset.i);                        // Guarda la variante elegida

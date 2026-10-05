@@ -163,3 +163,74 @@ nav a { text-decoration: none; font-weight: 600; } /* Enlaces del menú sin subr
 }                                               /* Fin botón flotante */
 .wa-fab:hover { filter: brightness(.93); }      /* Un poco más oscuro al pasar el mouse */
 section[id] { scroll-margin-top: 80px; }        /* Al saltar a una sección, el título no queda tapado por la barra fija */
+
+/* ---------- Carrito ---------- */
+.cart-btn {                                     /* Botón del carrito en el menú */
+  position: relative;                           /* Permite ubicar el contador encima */
+  background: none; border: 0;                  /* Sin fondo ni borde */
+  font-size: 24px; cursor: pointer;             /* Ícono grande y clicable */
+  padding: 4px 8px;                             /* Área de toque */
+}                                               /* Fin botón carrito */
+.cart-count {                                   /* Circulito con el número de unidades */
+  position: absolute; top: -4px; right: -6px;   /* Esquina superior derecha del ícono */
+  background: var(--yellow); color: var(--ink); /* Amarillo con texto oscuro */
+  font-size: 12px; font-weight: 700;            /* Número pequeño y fuerte */
+  min-width: 20px; height: 20px;                /* Tamaño mínimo */
+  border-radius: 999px; display: grid; place-items: center; /* Redondo y centrado */
+  padding: 0 5px;                               /* Espacio si el número tiene 2 cifras */
+}                                               /* Fin contador */
+.cart-count[hidden] { display: none; }          /* Oculto cuando el carrito está vacío */
+.cart-overlay {                                 /* Fondo oscuro detrás del panel */
+  position: fixed; inset: 0;                    /* Cubre toda la pantalla */
+  background: rgba(0,0,0,.35);                  /* Negro semitransparente */
+  opacity: 0; pointer-events: none;             /* Invisible y no clicable por defecto */
+  transition: opacity .25s; z-index: 40;        /* Aparece suavemente, encima del contenido */
+}                                               /* Fin fondo */
+.cart-panel {                                   /* Panel lateral del carrito */
+  position: fixed; top: 0; right: 0;            /* Pegado a la derecha */
+  width: min(420px, 100%); height: 100%;        /* Ancho máximo 420px, todo el alto */
+  background: #fff; z-index: 50;                /* Blanco, por encima del fondo */
+  display: flex; flex-direction: column;        /* Encabezado, lista y pie en columna */
+  transform: translateX(100%);                  /* Escondido fuera de la pantalla */
+  transition: transform .25s;                   /* Se desliza al abrir */
+  box-shadow: -10px 0 30px rgba(0,0,0,.12);     /* Sombra a la izquierda */
+}                                               /* Fin panel */
+body.cart-open .cart-panel { transform: none; } /* Abierto: vuelve a su lugar */
+body.cart-open .cart-overlay { opacity: 1; pointer-events: auto; } /* Abierto: muestra el fondo */
+body.cart-open { overflow: hidden; }            /* Evita mover la página de atrás */
+.cart-head {                                    /* Encabezado del panel */
+  display: flex; justify-content: space-between; align-items: center; /* Título a la izquierda, X a la derecha */
+  padding: 16px 20px; border-bottom: 1px solid #eee; /* Espacio y línea inferior */
+}                                               /* Fin encabezado */
+.cart-head h2 { margin: 0; font-size: 22px; }   /* Título del panel */
+.cart-close { background: none; border: 0; font-size: 20px; cursor: pointer; } /* Botón X */
+.cart-items { flex: 1; overflow-y: auto; padding: 8px 20px; } /* Lista con scroll propio */
+.cart-empty { color: var(--muted); }            /* Mensaje de carrito vacío */
+.cart-row {                                     /* Una fila del carrito */
+  display: grid; grid-template-columns: 64px 1fr auto; /* Foto, información y subtotal */
+  gap: 12px; align-items: center;               /* Separación y centrado */
+  padding: 12px 0; border-bottom: 1px solid #f0f0f0; /* Espacio y separador */
+}                                               /* Fin fila */
+.cart-row img { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; } /* Miniatura */
+.cart-info a { font-weight: 700; text-decoration: none; display: block; } /* Nombre del producto */
+.cart-variant { font-size: 13px; color: var(--muted); } /* Color y precio unitario */
+.qty { display: flex; align-items: center; gap: 8px; margin-top: 6px; } /* Controles de cantidad */
+.qty button {                                   /* Botones − y + */
+  width: 28px; height: 28px; border-radius: 50%; /* Redondos */
+  border: 1px solid #ddd; background: #fff;     /* Borde gris */
+  font-size: 16px; cursor: pointer;             /* Tamaño y cursor */
+}                                               /* Fin botones de cantidad */
+.qty .cart-remove {                             /* Botón "Quitar" */
+  width: auto; border: 0; border-radius: 0;     /* Texto plano, sin círculo */
+  color: var(--muted); font-size: 13px;         /* Gris y pequeño */
+  text-decoration: underline;                   /* Subrayado como enlace */
+}                                               /* Fin quitar */
+.cart-foot { padding: 16px 20px; border-top: 1px solid #eee; } /* Pie del panel */
+.cart-total { font-size: 20px; margin: 0 0 8px; } /* Total */
+.cart-send { width: 100%; }                     /* Botón de enviar a todo el ancho */
+.cart-send.disabled { background: #bbb; pointer-events: none; } /* Gris y no clicable si está vacío */
+.buy-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 4px; } /* Cantidad + Agregar */
+.qty-lg { margin-top: 0; }                      /* Sin margen extra en el detalle */
+.qty-lg button { width: 40px; height: 40px; font-size: 20px; } /* Botones de cantidad más grandes */
+.qty-lg span { min-width: 24px; text-align: center; font-weight: 700; } /* Número centrado */
+button.btn { border: 0; font: inherit; font-weight: 700; cursor: pointer; } /* El botón amarillo funciona igual siendo <button> */
