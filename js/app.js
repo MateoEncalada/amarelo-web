@@ -85,7 +85,7 @@ function renderDetail() {                                       // Sin parámetr
         <div id="wa-slot"></div>
         <p class="note">Hecho a mano. Los pedidos se coordinan únicamente por WhatsApp.</p>
       </div>`;                                                  // Galería a la izquierda, información y botón a la derecha
-    document.getElementById("wa-slot").appendChild(createOrderButton(product.name, v.label)); // Botón de WhatsApp (de whatsapp-order.js) con producto y color elegidos
+    document.getElementById("wa-slot").appendChild(createOrderButton(product.name, v.label, v.price)); // Botón de WhatsApp con producto, color y precio elegidos
     box.querySelectorAll(".chip").forEach(btn =>                // Para cada botón de color...
       btn.addEventListener("click", () => {                     // ...al hacer clic:
         current = Number(btn.dataset.i);                        // Guarda la variante elegida
