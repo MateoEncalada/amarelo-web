@@ -149,3 +149,17 @@ nav a { text-decoration: none; font-weight: 600; } /* Enlaces del menú sin subr
 }                                               /* Fin reglas móviles */
 .features { padding-left: 20px; margin: 8px 0; color: var(--ink); } /* Lista de características del producto */
 .wa-order-btn { font-size: 18px; padding: 14px 28px; }   /* Botón de pedido más grande en el detalle */
+
+/* ---------- Filtros y botón flotante ---------- */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; } /* Fila de botones de categoría */
+.wa-fab {                                       /* Botón redondo flotante de WhatsApp */
+  position: fixed; right: 20px; bottom: 20px;   /* Fijo en la esquina inferior derecha */
+  width: 58px; height: 58px; border-radius: 50%; /* Círculo */
+  display: grid; place-items: center;           /* Centra el ícono */
+  background: var(--wa); color: #fff;           /* Verde WhatsApp */
+  font-size: 28px; text-decoration: none;       /* Ícono grande sin subrayado */
+  box-shadow: 0 6px 18px rgba(0,0,0,.2);        /* Sombra para que se note */
+  z-index: 20;                                  /* Por encima del resto */
+}                                               /* Fin botón flotante */
+.wa-fab:hover { filter: brightness(.93); }      /* Un poco más oscuro al pasar el mouse */
+section[id] { scroll-margin-top: 80px; }        /* Al saltar a una sección, el título no queda tapado por la barra fija */

@@ -5,31 +5,33 @@
 const AMARELO_WHATSAPP_NUMBER = "593982033989"; // Test number given by Mateo (Ecuador +593); replace with the final business number when ready
 
 // Builds the prefilled message the customer will see in WhatsApp.
-function buildOrderMessage(product, variant) {
+function buildOrderMessage(product, variant, price) {
   // Start with a greeting that names the product the customer wants.
   let message = `Hola Amarelo, me interesa hacer un pedido del producto: ${product}`;
   // If the card specifies a variant (color, number of modules...), add it to the message.
   if (variant) message += ` (${variant})`;
-  // Close the message asking for availability and price so the conversation starts with useful info.
-  message += ". ¿Me pueden dar más información sobre disponibilidad y precio?";
+  // If we know the price (the one shown in the photos), include it so both sides agree on the amount.
+  if (price !== undefined) message += ` por $${price}`;
+  // Close the message asking about availability and delivery (the price is already known).
+  message += ". ¿Está disponible y cómo coordinamos la entrega?";
   // Return the finished text.
   return message;
 }
 
 // Builds the full wa.me link for a product.
-function buildWhatsAppLink(product, variant) {
+function buildWhatsAppLink(product, variant, price) {
   // encodeURIComponent makes spaces, accents and "¿" safe to put inside a URL.
-  const text = encodeURIComponent(buildOrderMessage(product, variant));
+  const text = encodeURIComponent(buildOrderMessage(product, variant, price));
   // wa.me opens WhatsApp (app on phones, WhatsApp Web on desktop) with the chat and text ready.
   return `https://wa.me/${AMARELO_WHATSAPP_NUMBER}?text=${text}`;
 }
 
 // Creates the button element for one product.
-function createOrderButton(product, variant) {
+function createOrderButton(product, variant, price) {
   // Use a link (<a>) instead of a <button> because it navigates to an external URL.
   const link = document.createElement("a");
   // Point the link at the prefilled WhatsApp chat.
-  link.href = buildWhatsAppLink(product, variant);
+  link.href = buildWhatsAppLink(product, variant, price);
   // Open WhatsApp in a new tab so the catalog stays open.
   link.target = "_blank";
   // Security best practice for target="_blank": the new tab cannot control this page.
