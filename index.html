@@ -1,0 +1,55 @@
+<!DOCTYPE html>                                              <!-- Indica que es un documento HTML5 -->
+<html lang="es">                                             <!-- Idioma del contenido: español -->
+<head>                                                       <!-- Metadatos de la página -->
+  <meta charset="UTF-8">                                     <!-- Codificación para tildes y ñ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Adapta el sitio a celulares -->
+  <title>Amarelo | Muebles hechos a mano</title>             <!-- Título de la pestaña -->
+  <meta name="description" content="Muebles Montessori hechos a mano. Pedidos por WhatsApp."> <!-- Descripción para buscadores -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Acelera la carga de fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet"> <!-- Fuentes redondeadas parecidas al logo -->
+  <link rel="stylesheet" href="css/styles.css">              <!-- Hoja de estilos del sitio -->
+  <link rel="stylesheet" href="css/whatsapp-order.css">      <!-- Estilos del botón de WhatsApp -->
+</head>                                                      <!-- Fin de metadatos -->
+<body>                                                       <!-- Contenido visible -->
+
+  <header class="site-header">                               <!-- Barra superior -->
+    <a href="index.html" class="logo">amarelo</a>            <!-- Logo en texto (mismo estilo del logo original) -->
+    <nav>                                                    <!-- Menú de navegación -->
+      <a href="#catalogo">Catálogo</a>                       <!-- Enlace a la grilla -->
+      <a href="#nosotros">Nosotros</a>                       <!-- Enlace a la sección de la marca -->
+      <a href="#" data-whatsapp target="_blank" rel="noopener" class="nav-wa">WhatsApp</a> <!-- Contacto directo -->
+    </nav>                                                   <!-- Fin del menú -->
+  </header>                                                  <!-- Fin barra superior -->
+
+  <section class="hero">                                     <!-- Portada principal -->
+    <div class="hero-text">                                  <!-- Bloque de texto -->
+      <h1>Muebles hechos a mano para crecer jugando</h1>     <!-- Titular -->
+      <p>Diseños Montessori que dan autonomía a los niños y calidez a tu hogar.</p> <!-- Subtítulo -->
+      <a href="#catalogo" class="btn">Ver catálogo</a>       <!-- Botón hacia los productos -->
+    </div>                                                   <!-- Fin bloque de texto -->
+    <img src="img/closet-alba-blanco.jpg" alt="Closet Montessori Alba" class="hero-img"> <!-- Foto destacada -->
+  </section>                                                 <!-- Fin portada -->
+
+  <section id="catalogo" class="section">                    <!-- Sección del catálogo -->
+    <h2>Catálogo</h2>                                        <!-- Título de sección -->
+    <div id="product-grid" class="grid"></div>               <!-- Aquí app.js inserta las tarjetas -->
+  </section>                                                 <!-- Fin catálogo -->
+
+  <section id="nosotros" class="section about">              <!-- Sección sobre la marca -->
+    <h2>Cómo pedir</h2>                                      <!-- Título -->
+    <ol class="steps">                                       <!-- Pasos numerados -->
+      <li>Elige tu mueble y su color en el catálogo.</li>    <!-- Paso 1 -->
+      <li>Toca "Pedir por WhatsApp": el mensaje se escribe solo.</li> <!-- Paso 2 -->
+      <li>Coordinamos contigo el pago y la entrega.</li>     <!-- Paso 3 -->
+    </ol>                                                    <!-- Fin pasos -->
+  </section>                                                 <!-- Fin sección nosotros -->
+
+  <footer class="site-footer">                               <!-- Pie de página -->
+    <p>© <span id="year"></span> Amarelo · Muebles hechos a mano</p> <!-- Derechos; el año lo pone app.js -->
+  </footer>                                                  <!-- Fin pie -->
+
+  <script src="js/whatsapp-order.js"></script>               <!-- Número de WhatsApp y creación del botón de pedido -->
+  <script src="js/products.js"></script>                     <!-- Carga los datos de productos -->
+  <script src="js/app.js"></script>                          <!-- Carga la lógica que dibuja el sitio -->
+</body>                                                      <!-- Fin contenido -->
+</html>                                                      <!-- Fin documento -->

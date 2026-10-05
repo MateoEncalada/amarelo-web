@@ -1,0 +1,151 @@
+/* ===================================================================
+   styles.css — Estilos del sitio Amarelo
+   =================================================================== */
+
+:root {                                         /* Variables de color y medidas reutilizables */
+  --yellow: #FDDD25;                            /* Amarillo del logo */
+  --yellow-dark: #E6C200;                       /* Amarillo más oscuro para hover */
+  --ink: #2B2B2B;                               /* Color principal del texto */
+  --muted: #6E6E6E;                             /* Texto secundario */
+  --bg: #F7F6F3;                                /* Fondo cálido claro */
+  --card: #FFFFFF;                              /* Fondo de tarjetas */
+  --wa: #25D366;                                /* Verde de WhatsApp */
+  --radius: 16px;                               /* Bordes redondeados */
+}                                               /* Fin variables */
+
+* { box-sizing: border-box; }                   /* El padding no agranda las cajas */
+
+body {                                          /* Estilo base de la página */
+  margin: 0;                                    /* Quita el margen por defecto */
+  font-family: "Nunito", system-ui, sans-serif; /* Fuente del texto */
+  color: var(--ink);                            /* Color del texto */
+  background: var(--bg);                        /* Color de fondo */
+  line-height: 1.6;                             /* Espaciado entre líneas */
+}                                               /* Fin body */
+
+img { max-width: 100%; display: block; }        /* Las imágenes nunca se salen de su contenedor */
+a { color: inherit; }                           /* Los enlaces usan el color del texto */
+
+h1, h2, h3, .logo {                             /* Títulos y logo */
+  font-family: "Quicksand", sans-serif;         /* Fuente redondeada tipo logo */
+  line-height: 1.2;                             /* Interlineado más apretado */
+}                                               /* Fin títulos */
+
+/* ---------- Encabezado ---------- */
+.site-header {                                  /* Barra superior */
+  position: sticky; top: 0; z-index: 10;        /* Se queda fija al hacer scroll */
+  display: flex; align-items: center;           /* Elementos en fila, centrados verticalmente */
+  justify-content: space-between;               /* Logo a la izquierda, menú a la derecha */
+  padding: 14px 24px;                           /* Espacio interno */
+  background: rgba(255,255,255,.95);            /* Fondo blanco casi opaco */
+  border-bottom: 1px solid #eee;                /* Línea inferior sutil */
+}                                               /* Fin encabezado */
+.logo {                                         /* Texto del logo */
+  font-size: 28px; font-weight: 700;            /* Tamaño y grosor */
+  color: var(--yellow);                         /* Amarillo de la marca */
+  text-decoration: none;                        /* Sin subrayado */
+  -webkit-text-stroke: .4px var(--yellow-dark); /* Borde fino para que se lea sobre blanco */
+}                                               /* Fin logo */
+nav { display: flex; gap: 18px; align-items: center; } /* Menú en fila con separación */
+nav a { text-decoration: none; font-weight: 600; } /* Enlaces del menú sin subrayado */
+.nav-wa {                                       /* Botón de WhatsApp del menú */
+  background: var(--wa); color: #fff;           /* Verde con texto blanco */
+  padding: 6px 14px; border-radius: 999px;      /* Forma de píldora */
+}                                               /* Fin botón menú */
+
+/* ---------- Portada ---------- */
+.hero {                                         /* Contenedor de la portada */
+  display: grid;                                /* Usa grilla */
+  grid-template-columns: 1fr 1fr;               /* Dos columnas: texto e imagen */
+  gap: 32px; align-items: center;               /* Separación y centrado */
+  max-width: 1150px; margin: 0 auto;            /* Ancho máximo centrado */
+  padding: 48px 24px;                           /* Espacio interno */
+}                                               /* Fin portada */
+.hero h1 { font-size: clamp(30px, 5vw, 48px); margin: 0 0 12px; } /* Titular que escala con la pantalla */
+.hero p { font-size: 18px; color: var(--muted); } /* Subtítulo gris */
+.hero-img { border-radius: var(--radius); box-shadow: 0 10px 30px rgba(0,0,0,.08); } /* Foto redondeada con sombra */
+.btn {                                          /* Botón principal amarillo */
+  display: inline-block;                        /* Se comporta como bloque en línea */
+  background: var(--yellow); color: var(--ink); /* Amarillo con texto oscuro */
+  padding: 12px 26px; border-radius: 999px;     /* Forma de píldora */
+  font-weight: 700; text-decoration: none;      /* Texto fuerte sin subrayado */
+  transition: background .2s;                   /* Animación suave del color */
+}                                               /* Fin botón */
+.btn:hover { background: var(--yellow-dark); }  /* Color al pasar el mouse */
+
+/* ---------- Secciones y grilla ---------- */
+.section { max-width: 1150px; margin: 0 auto; padding: 32px 24px; } /* Ancho y espaciado de secciones */
+.section h2 { font-size: 32px; margin: 0 0 24px; } /* Títulos de sección */
+.grid {                                         /* Grilla de productos */
+  display: grid;                                /* Usa CSS Grid */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Columnas automáticas según el ancho */
+  gap: 24px;                                    /* Separación entre tarjetas */
+}                                               /* Fin grilla */
+.card {                                         /* Tarjeta de producto */
+  background: var(--card); border-radius: var(--radius); /* Fondo blanco redondeado */
+  overflow: hidden; text-decoration: none;      /* Recorta la imagen y quita subrayado */
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);       /* Sombra suave */
+  transition: transform .2s, box-shadow .2s;    /* Animación al pasar el mouse */
+}                                               /* Fin tarjeta */
+.card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,.1); } /* Se eleva al pasar el mouse */
+.card-img { aspect-ratio: 1 / 1; background: #eee; } /* Contenedor cuadrado de la imagen */
+.card-img img { width: 100%; height: 100%; object-fit: cover; } /* La imagen llena el cuadro sin deformarse */
+.card-body { padding: 16px 18px 20px; }         /* Espacio interno del texto */
+.card-body h3 { margin: 4px 0; font-size: 19px; } /* Nombre del producto */
+.card-cat {                                     /* Etiqueta de categoría */
+  font-size: 12px; text-transform: uppercase;   /* Pequeña y en mayúsculas */
+  letter-spacing: .08em; color: var(--muted);   /* Espaciada y gris */
+}                                               /* Fin categoría */
+.card-dim { color: var(--muted); margin: 0; font-size: 14px; } /* Medidas en gris */
+.card-price { font-weight: 700; font-size: 18px; margin: 8px 0 0; } /* Precio destacado */
+
+/* ---------- Cómo pedir ---------- */
+.steps { padding-left: 20px; font-size: 17px; } /* Lista numerada de pasos */
+.steps li { margin-bottom: 8px; }               /* Separación entre pasos */
+
+/* ---------- Detalle de producto ---------- */
+.back { display: inline-block; margin-bottom: 20px; color: var(--muted); text-decoration: none; } /* Enlace "volver" */
+.detail {                                       /* Contenedor del detalle */
+  display: grid;                                /* Usa grilla */
+  grid-template-columns: 1.2fr 1fr;             /* Galería más ancha que la info */
+  gap: 40px; align-items: start;                /* Separación y alineación arriba */
+}                                               /* Fin detalle */
+.detail-main { width: 100%; border-radius: var(--radius); background: #eee; } /* Imagen grande */
+.thumbs { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; } /* Fila de miniaturas */
+.thumbs img {                                   /* Cada miniatura */
+  width: 72px; height: 72px; object-fit: cover; /* Cuadradas y recortadas */
+  border-radius: 10px; cursor: pointer;         /* Redondeadas y clicables */
+  border: 2px solid transparent;                /* Borde invisible por defecto */
+}                                               /* Fin miniatura */
+.thumbs img:hover { border-color: var(--yellow); } /* Borde amarillo al pasar el mouse */
+.detail-info h1 { font-size: 34px; margin: 6px 0; } /* Nombre del producto */
+.detail-price { font-size: 30px; font-weight: 700; margin: 0 0 12px; } /* Precio grande */
+.variants { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 20px 0; } /* Botones de color */
+.chip {                                         /* Botón de variante */
+  border: 2px solid #ddd; background: #fff;     /* Borde gris y fondo blanco */
+  padding: 6px 14px; border-radius: 999px;      /* Forma de píldora */
+  font: inherit; cursor: pointer;               /* Misma fuente y cursor de mano */
+}                                               /* Fin chip */
+.chip.active { border-color: var(--ink); background: var(--yellow); } /* Variante seleccionada */
+.btn-whatsapp {                                 /* Botón principal de pedido */
+  display: inline-block;                        /* Bloque en línea */
+  background: var(--wa); color: #fff;           /* Verde WhatsApp con texto blanco */
+  padding: 14px 28px; border-radius: 999px;     /* Píldora grande */
+  font-weight: 700; text-decoration: none;      /* Texto fuerte sin subrayado */
+  font-size: 18px;                              /* Tamaño de texto */
+}                                               /* Fin botón WhatsApp */
+.btn-whatsapp:hover { filter: brightness(.93); } /* Se oscurece un poco al pasar el mouse */
+.note { color: var(--muted); font-size: 14px; } /* Nota pequeña bajo el botón */
+.not-found { font-size: 18px; }                 /* Mensaje si el producto no existe */
+
+/* ---------- Pie de página ---------- */
+.site-footer { text-align: center; padding: 32px; color: var(--muted); } /* Pie centrado y gris */
+
+/* ---------- Celulares (pantallas angostas) ---------- */
+@media (max-width: 760px) {                     /* Reglas solo para pantallas pequeñas */
+  .hero, .detail { grid-template-columns: 1fr; } /* Una sola columna */
+  .hero { padding-top: 24px; }                  /* Menos espacio arriba */
+  nav a:not(.nav-wa) { display: none; }         /* Oculta enlaces de texto; queda solo WhatsApp */
+}                                               /* Fin reglas móviles */
+.features { padding-left: 20px; margin: 8px 0; color: var(--ink); } /* Lista de características del producto */
+.wa-order-btn { font-size: 18px; padding: 14px 28px; }   /* Botón de pedido más grande en el detalle */

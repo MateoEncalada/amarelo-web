@@ -1,0 +1,27 @@
+/* whatsapp-order.css: styles for the "Pedir por WhatsApp" button. */
+
+.wa-order-btn {                      /* The button itself (it's an <a> link styled as a button). */
+  display: inline-flex;              /* Lets the text sit centered inside the button. */
+  align-items: center;               /* Vertically centers the content. */
+  justify-content: center;           /* Horizontally centers the content. */
+  gap: 0.5rem;                       /* Space between an icon and the text, if one is added later. */
+  margin-top: 0.75rem;               /* Separates the button from the product info above it. */
+  padding: 0.7rem 1.2rem;            /* Comfortable tap area, important on phones. */
+  min-height: 44px;                  /* Minimum touch target size recommended for mobile. */
+  background: #25D366;               /* Official WhatsApp green so customers recognize it instantly. */
+  color: #ffffff;                    /* White text for contrast on green. */
+  font-weight: 600;                  /* Semi-bold so the call to action stands out. */
+  text-decoration: none;             /* Removes the default link underline. */
+  border-radius: 999px;              /* Fully rounded "pill" shape. */
+  transition: background 0.2s;       /* Smooth color change on hover. */
+}
+
+.wa-order-btn:hover,                 /* When the mouse is over the button... */
+.wa-order-btn:focus-visible {        /* ...or it's focused with the keyboard: */
+  background: #1DA851;               /* use a darker green as feedback. */
+}
+
+.wa-order-btn:focus-visible {        /* Keyboard focus only: */
+  outline: 3px solid #128C7E;        /* show a clear outline for accessibility. */
+  outline-offset: 2px;               /* Leave a small gap between the button and the outline. */
+}
