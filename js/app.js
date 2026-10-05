@@ -14,10 +14,11 @@ function minPrice(product) {                                    // Recibe un pro
 }                                                               // Fin minPrice
 
 // Dibuja la grilla de productos en la página de inicio
-function renderGrid() {                                         // Sin parámetros: usa PRODUCTS
+function renderGrid(category = "Todos") {                       // Recibe la categoría a mostrar ("Todos" por defecto)
   const grid = document.getElementById("product-grid");         // Busca el contenedor de la grilla
   if (!grid) return;                                            // Si no existe (otra página), no hace nada
-  grid.innerHTML = PRODUCTS.map(p => {                          // Convierte cada producto en HTML
+  const list = category === "Todos" ? PRODUCTS : PRODUCTS.filter(p => p.category === category); // Filtra por categoría si hace falta
+  grid.innerHTML = list.map(p => {                              // Convierte cada producto en HTML
     const many = p.variants.length > 1;                         // ¿Tiene más de un precio?
     return `
       <a class="card" href="producto.html?id=${p.id}">
@@ -31,6 +32,20 @@ function renderGrid() {                                         // Sin parámetr
       </a>`;                                                    // Tarjeta: enlace al detalle con imagen, categoría, nombre, medidas y precio
   }).join("");                                                  // Une todas las tarjetas en un solo texto
 }                                                               // Fin renderGrid
+
+// Dibuja los botones de filtro por categoría encima de la grilla
+function renderFilters() {                                      // Sin parámetros: usa PRODUCTS
+  const bar = document.getElementById("filters");               // Busca el contenedor de filtros
+  if (!bar) return;                                             // Si no existe, no hace nada
+  const cats = ["Todos", ...new Set(PRODUCTS.map(p => p.category))]; // Lista de categorías sin repetir, empezando por "Todos"
+  bar.innerHTML = cats.map((c, i) => `<button class="chip ${i === 0 ? "active" : ""}" data-cat="${c}">${c}</button>`).join(""); // Un botón por categoría
+  bar.querySelectorAll(".chip").forEach(btn =>                  // Para cada botón...
+    btn.addEventListener("click", () => {                       // ...al hacer clic:
+      bar.querySelectorAll(".chip").forEach(b => b.classList.remove("active")); // Quita el resaltado de todos
+      btn.classList.add("active");                              // Resalta el elegido
+      renderGrid(btn.dataset.cat);                              // Vuelve a dibujar la grilla filtrada
+    }));                                                        // Fin listeners
+}                                                               // Fin renderFilters
 
 // Dibuja la vista de detalle de un producto (producto.html?id=...)
 function renderDetail() {                                       // Sin parámetros: lee el id de la URL
@@ -98,6 +113,7 @@ function setContactLinks() {                                    // Sin parámetr
 
 // Cuando el HTML terminó de cargar, se ejecuta todo
 document.addEventListener("DOMContentLoaded", () => {           // Espera a que el DOM esté listo
+  renderFilters();                                              // Dibuja los filtros (si aplica)
   renderGrid();                                                 // Dibuja la grilla (si aplica)
   renderDetail();                                               // Dibuja el detalle (si aplica)
   setContactLinks();                                            // Configura enlaces de contacto

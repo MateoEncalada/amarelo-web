@@ -6,6 +6,11 @@
   <title>Producto | Amarelo</title>                          <!-- Título provisional (app.js lo reemplaza) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Acelera las fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet"> <!-- Fuentes -->
+  <link rel="icon" type="image/jpeg" href="img/logo-amarelo-fondo-amarillo.jpg"> <!-- Ícono de la pestaña con el logo -->
+  <meta name="theme-color" content="#FDDD25">                <!-- Color de la barra del navegador en celulares -->
+  <meta property="og:title" content="Amarelo | Muebles hechos a mano"> <!-- Título al compartir el enlace (WhatsApp, Facebook) -->
+  <meta property="og:description" content="Muebles Montessori hechos a mano. Pedidos por WhatsApp."> <!-- Texto al compartir -->
+  <meta property="og:image" content="img/closet-alba-blanco.jpg"> <!-- Imagen al compartir (en producción conviene URL completa) -->
   <link rel="stylesheet" href="css/styles.css">              <!-- Estilos compartidos -->
   <link rel="stylesheet" href="css/whatsapp-order.css">      <!-- Estilos del botón de WhatsApp -->
 </head>                                                      <!-- Fin metadatos -->
@@ -28,6 +33,7 @@
     <p>© <span id="year"></span> Amarelo · Muebles hechos a mano</p> <!-- Derechos -->
   </footer>                                                  <!-- Fin pie -->
 
+  <a href="#" data-whatsapp target="_blank" rel="noopener" class="wa-fab" aria-label="Escríbenos por WhatsApp">💬</a> <!-- Botón flotante de WhatsApp, siempre visible -->
   <script src="js/whatsapp-order.js"></script>               <!-- Número de WhatsApp y creación del botón de pedido -->
   <script src="js/products.js"></script>                     <!-- Datos -->
   <script src="js/app.js"></script>                          <!-- Lógica -->
